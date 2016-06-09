@@ -1,0 +1,108 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.1'
+    defaultConfig {
+        applicationId "com.byronginvest.modulecollections"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    useLibrary 'org.apache.http.legacy'
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            jniDebuggable false
+            renderscriptDebuggable false
+            minifyEnabled false
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            pseudoLocalesEnabled true
+        }
+    }
+    productFlavors {
+    }
+    dexOptions {
+        jumboMode = true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+
+    //这个是解决lint报错的代码
+    lintOptions {
+        abortOnError false
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //    compile(name:'rxandroid-1.2.0', ext:'aar')
+    compile project(':UIL')
+    //    testCompile 'junit:junit:4.12'
+    compile project(':ULTRA')
+    compile project(':Swipelayout')
+    compile files('libs/javassist.jar')
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.google.code.gson:gson:2.5'
+    //    compile 'com.jakewharton:butterknife:7.0.1'
+
+    //    compile 'com.droidtitan:lint-cleaner-plugin:0.3.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.koushikdutta.ion:ion:2.+'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'cglib:cglib:3.2.2'
+    //    compile 'in.srain.cube:cube-sdk:1.0.44@aar'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.okio:okio:1.8.0'
+    compile project(':volley')
+    compile 'io.reactivex:rxandroid:1.2.0'
+    compile 'io.reactivex:rxjava:1.1.5'
+    compile 'com.jakewharton:butterknife:8.0.1'
+    apt 'com.jakewharton:butterknife-compiler:8.0.1'
+    compile 'com.facebook.fresco:fresco:0.10.0'
+    compile 'com.facebook.fresco:imagepipeline-okhttp3:0.10.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'org.parceler:parceler-api:1.1.4'
+    apt 'org.parceler:parceler:1.1.4'
+    //    compile 'com.alibaba:fastjson:1.2.12'
+    compile 'com.android.support:multidex:1.0.1'
+    //    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    //    compile 'com.fasterxml.jackson.module:jackson-modules-base:2.7.4'
+    compile 'com.squareup.retrofit2:converter-jackson:2.0.2'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
+    compile 'com.fasterxml.jackson:jackson-parent:2.7-1'
+    compile 'com.fasterxml.jackson.jr:jackson-jr-retrofit2:2.7.4'
+    //    compile 'com.bigkoo:convenientbanner:2.0.5'
+
+    //    compile project(':convenientbanner')
+    compile project(':convenientbanner')
+}
